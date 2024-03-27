@@ -9,21 +9,21 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
-    @IBAction func textField(_ sender: UITextField) {
-    }
+    @IBOutlet weak var todoList: UITextField!
+    @IBOutlet weak var tappedButton: UIButton!
     
-    @IBAction func checkButton(_ sender: UIButton) {
+    @IBAction func checked(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }

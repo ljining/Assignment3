@@ -17,6 +17,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        tasks.append(Task(id: 1, title: "First", isCompleted: false))
 
     }
 
@@ -46,9 +51,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
         
-        let textField = cell.contentView.subviews.compactMap { $0 as? UITextField }.first
-        textField?.isUserInteractionEnabled = tableView.isEditing
-        textField?.text = tasks[indexPath.row].title
+        let task = tasks[indexPath.row]
+        cell.todoList.text = task.title
+        cell.tappedButton.setTitle("Button", for: .normal)
+        cell.todoList.isUserInteractionEnabled = true
         
         return cell
     }
